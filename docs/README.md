@@ -1,14 +1,14 @@
 ---
 layout: home
 permalink: index.html
+repository-name: e23-co2060-
+title: Software Systems Design Project Template
 
+
+# Please update this with your repository name and project title
 repository-name: e23-co2060-Smart_Travel_Companion
 title: Software Systems Design Project Template
 
-# Please update this with your repository name and project title
-repository-name: eYY-co2060-project-template
-title: Project Template
----
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template, and add more information required for your own project"
 
