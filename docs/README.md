@@ -1,8 +1,6 @@
 ---
 layout: home
 permalink: index.html
-repository-name: e23-co2060-
-title: Software Systems Design Project Template
 
 
 # Please update this with your repository name and project title
