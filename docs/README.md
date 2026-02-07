@@ -2,6 +2,9 @@
 layout: home
 permalink: index.html
 
+repository-name: e23-co2060-Smart_Travel_Companion
+title: Smart Travel companion
+
 # Please update this with your repository name and project title
 repository-name: eYY-co2060-project-template
 title: Project Template
@@ -24,9 +27,10 @@ A HTML template integrated with the given GitHub repository templates, based on 
 ---
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/23/231, M.Vaishnavi, e23231@eng.pdn.ac.lk
+-  E/23/019, A.Agalya, e23019@eng.pdn.ac.lk
+-  E/23/011, Y.Akalyan, e23011@eng.pdn.ac.lk
+-  E/23/393, J.Thanushananth, e23393@eng.pdn.ac.lk
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
@@ -44,7 +48,7 @@ A HTML template integrated with the given GitHub repository templates, based on 
 
 ## Introduction
 
-Description of the real world problem and solution, impact
+The Smart Travel Companion is a mobile application designed to assist tourists in planning and organizing trips in Sri Lanka. It provides an all-in-one platform for creating personalized itineraries, optimizing travel routes, recommending accommodations, and providing information about tourist attractions. Users can customize plans based on budget, trip duration, interests, and locations. The app also guides users on transportation, ensuring smooth travel between destinations. 
 
 
 ## Solution Architecture
