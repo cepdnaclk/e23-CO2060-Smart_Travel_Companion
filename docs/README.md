@@ -25,7 +25,7 @@ Software Systems Design Project Template
 ## Team
 -  E/23/231, M.Vaishnavi, e23231@eng.pdn.ac.lk
 -  E/23/019, A.Agalya, e23019@eng.pdn.ac.lk
--  E/23/011, Y.Akalyan, e23011@eng.pdn.ac.lk
+-  E/23/009, Y.Akalyan, e23009@eng.pdn.ac.lk
 -  E/23/393, J.Thanushananth, e23393@eng.pdn.ac.lk
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
