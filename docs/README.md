@@ -3,7 +3,7 @@ layout: home
 permalink: index.html
 
 repository-name: e23-co2060-Smart_Travel_Companion
-title: Smart Travel companion
+title: Software Systems Design Project Template
 
 # Please update this with your repository name and project title
 repository-name: eYY-co2060-project-template
@@ -23,8 +23,7 @@ If your followed all the given instructions correctly, your repository will be a
 A HTML template integrated with the given GitHub repository templates, based on github.com/cepdnaclk/eYY-project-theme . If you like to remove this default theme and make your own web page, you can remove the file, docs/_config.yml and create the site using HTML. -->
 
 # Project Title
-
----
+Software Systems Design Project Template
 
 ## Team
 -  E/23/231, M.Vaishnavi, e23231@eng.pdn.ac.lk
