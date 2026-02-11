@@ -1,8 +1,8 @@
 ___
-# DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
+
 ___
 
-# eYY-co2060-project-template
+# e23-co2060-Smart_Travel_Companion
 
 This is a sample repository you can use for your Software Systems Design Project. Once you followed these instructions, remove the text and add a brief introduction to here.
 
@@ -21,28 +21,33 @@ These projects will be automatically added into [https://projects.ce.pdn.ac.lk](
   "title": "This is the title of the project",
   "team": [
     {
-      "name": "Team Member Name 1",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "M.Vaishnavi",
+      "email": "e23231@eng.pdn.ac.lk",
+      "eNumber": "E/23/231"
     },
     {
-      "name": "Team Member Name 2",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "A.Agalya",
+      "email": "e23019@eng.pdn.ac.lk",
+      "eNumber": "E/23/019"
     },
     {
-      "name": "Team Member Name 3",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
+      "name": "J.Thanushananth",
+      "email": "e23393@eng.pdn.ac.lk",
+      "eNumber": "E/23/393"
+    },
+    {
+      "name": "Y.Akalyan",
+      "email": "e23009@eng.pdn.ac.lk",
+      "eNumber": "E/23/009"
     }
   ],
   "supervisors": [
     {
-      "name": "Dr. Supervisor 1",
+      "name": "Dr.Thilina",
       "email": "email@eng.pdn.ac.lk"
     },
     {
-      "name": "Supervisor 2",
+      "name": "Jarshigan",
       "email": "email@eng.pdn.ac.lk"
     }
   ],
