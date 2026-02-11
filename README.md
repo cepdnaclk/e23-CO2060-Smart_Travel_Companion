@@ -1,5 +1,5 @@
 ___
-
+The Smart Travel Companion is a mobile-based solution designed to simplify the complex process of planning a trip to Sri Lanka. By consolidating scattered information into a single platform, it eliminates the need for tourists to juggle multiple apps for navigation, accommodation, and sightseeing. The application uses smart algorithms to provide personalized itineraries, optimized routes, and transportation guidance tailored to individual budgets and preferences. Built with modern cross-platform technologies, it ensures a seamless, all-in-one digital experience for both first-time and returning visitors. This project   ultimately aims to enhance the travel journey by saving time and reducing the stress of holiday.
 ___
 
 # e23-co2060-Smart_Travel_Companion
