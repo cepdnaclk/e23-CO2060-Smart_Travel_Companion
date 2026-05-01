@@ -48,6 +48,12 @@
   color: var(--primary);
 }
 
+.active-link {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary);
+}
+
 .nav-user {
   display: flex;
   align-items: center;
