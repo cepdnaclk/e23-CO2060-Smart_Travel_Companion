@@ -1,20 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { Map, Compass, Home, LogOut, User, ShieldAlert } from 'lucide-react';
+import { Map, Compass, Home, LogOut, User, ShieldAlert, Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ added
+  const location = useLocation();
+
+  // Mobile menu state
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
-  // ✅ active link checker
+  // Active link checker
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -26,12 +29,19 @@ const Navbar = () => {
           <span>SmartTravel Lanka</span>
         </Link>
 
-        <ul className="navbar-menu">
+        {/* Hamburger Button */}
+        <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={26} /> : <Menu size={26} />}
+        </div>
+
+        {/* Menu */}
+        <ul className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
 
           <li>
-            <Link
-              to="/"
+            <Link 
+              to="/" 
               className={`nav-link ${isActive('/') ? 'active-link' : ''}`}
+              onClick={() => setMenuOpen(false)}
             >
               <Home size={18} /> Home
             </Link>
@@ -40,18 +50,20 @@ const Navbar = () => {
           {user ? (
             <>
               <li>
-                <Link
-                  to="/explore"
+                <Link 
+                  to="/explore" 
                   className={`nav-link ${isActive('/explore') ? 'active-link' : ''}`}
+                  onClick={() => setMenuOpen(false)}
                 >
                   <Map size={18} /> Explore
                 </Link>
               </li>
 
               <li>
-                <Link
-                  to="/planner"
+                <Link 
+                  to="/planner" 
                   className={`nav-link ${isActive('/planner') ? 'active-link' : ''}`}
+                  onClick={() => setMenuOpen(false)}
                 >
                   <Compass size={18} /> Planner
                 </Link>
@@ -59,9 +71,10 @@ const Navbar = () => {
 
               {user.role === 'ROLE_ADMIN' && (
                 <li>
-                  <Link
-                    to="/admin/dashboard"
+                  <Link 
+                    to="/admin/dashboard" 
                     className={`nav-link ${isActive('/admin/dashboard') ? 'active-link' : ''}`}
+                    onClick={() => setMenuOpen(false)}
                   >
                     <ShieldAlert size={18} /> Admin
                   </Link>
@@ -83,23 +96,28 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link
-                  to="/login"
+                <Link 
+                  to="/login" 
                   className={`nav-link ${isActive('/login') ? 'active-link' : ''}`}
+                  onClick={() => setMenuOpen(false)}
                 >
                   Login
                 </Link>
               </li>
 
               <li>
-                <Link to="/register" className="btn btn-primary btn-sm">
+                <Link 
+                  to="/register" 
+                  className="btn btn-primary btn-sm"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Register
                 </Link>
               </li>
             </>
           )}
-
         </ul>
+
       </div>
     </nav>
   );
