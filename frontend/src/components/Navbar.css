@@ -1,0 +1,131 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.logo-icon {
+  color: var(--secondary);
+}
+
+/* MENU */
+.navbar-menu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* LINKS */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+/* ACTIVE LINK */
+.active-link {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary);
+}
+
+/* USER */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+/* LOGOUT BUTTON */
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.btn-logout:hover {
+  color: #ff4d4f;
+}
+
+/* SMALL BUTTON */
+.btn-sm {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* HAMBURGER BUTTON */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  .navbar-container {
+    flex-direction: row;
+  }
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hide menu by default */
+  .navbar-menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: var(--radius);
+    flex-direction: column;
+    gap: 1rem;
+    display: none;
+    min-width: 200px;
+  }
+
+  /* Show when active */
+  .navbar-menu.active {
+    display: flex;
+  }
+}
