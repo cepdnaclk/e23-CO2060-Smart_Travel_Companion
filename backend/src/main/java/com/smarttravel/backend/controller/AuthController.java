@@ -6,6 +6,9 @@ import com.smarttravel.backend.dto.LoginRequest;
 import com.smarttravel.backend.dto.RegisterRequest;
 import com.smarttravel.backend.model.User;
 import com.smarttravel.backend.repository.UserRepository;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,16 +35,17 @@ public class AuthController {
     @Autowired
     private JwtTokenProvider tokenProvider;
 
+    // USER LOGIN
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         System.out.println("LOGIN EMAIL: " + loginRequest.getEmail());
         System.out.println("LOGIN PASSWORD: " + loginRequest.getPassword());
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                       loginRequest.getEmail(),
-                       loginRequest.getPassword()
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
                 )
         );
 
@@ -51,10 +55,15 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
+    // ADMIN LOGIN
     @PostMapping("/admin/login")
-    public ResponseEntity<?> authenticateAdmin(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateAdmin(@Valid @RequestBody LoginRequest loginRequest) {
+
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
+                )
         );
 
         boolean isAdmin = authentication.getAuthorities().stream()
@@ -66,18 +75,24 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
+
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
+    //  REGISTER USER
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
-        if(userRepository.existsByEmail(registerRequest.getEmail())) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
         }
 
-        // Creating user's account
-        User user = new User(registerRequest.getName(), registerRequest.getEmail(),
-                passwordEncoder.encode(registerRequest.getPassword()));
+        // Create new user
+        User user = new User(
+                registerRequest.getName(),
+                registerRequest.getEmail(),
+                passwordEncoder.encode(registerRequest.getPassword())
+        );
 
         userRepository.save(user);
 
