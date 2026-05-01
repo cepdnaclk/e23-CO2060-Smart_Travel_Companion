@@ -7,8 +7,9 @@ const Explore = () => {
   const [locations, setLocations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [district, setDistrict] = useState('All'); // ✅ NEW
 
-  // Fetch locations
+  // 🔥 Fetch locations
   useEffect(() => {
     const fetchLocations = async () => {
       try {
@@ -21,7 +22,7 @@ const Explore = () => {
     fetchLocations();
   }, []);
 
-  // Debounce (better UX)
+  // 🔥 Debounce
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchTerm.trim().toLowerCase());
@@ -30,32 +31,40 @@ const Explore = () => {
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // Filter logic (safe)
+  // 🔥 District list (dynamic)
+  const districts = ['All', ...new Set(locations.map(l => l.district).filter(Boolean))];
+
+  // 🔥 Filter logic (UPDATED)
   const filteredLocations = locations.filter(loc => {
     const name = loc.name?.toLowerCase() || '';
-    const district = loc.district?.toLowerCase() || '';
+    const locDistrict = loc.district || '';
+    const locDistrictLower = locDistrict.toLowerCase();
 
-    return (
+    const matchesSearch =
       name.includes(debouncedSearch) ||
-      district.includes(debouncedSearch)
-    );
+      locDistrictLower.includes(debouncedSearch);
+
+    const matchesDistrict =
+      district === 'All' || locDistrict === district;
+
+    return matchesSearch && matchesDistrict;
   });
 
   return (
     <div className="container animate-fade-in mb-4">
-      
-      {/* Header */}
+
+      {/* 🔥 Header */}
       <div className="text-center mb-2">
         <h2>Explore Sri Lanka</h2>
         <p className="text-muted">Find your next adventure.</p>
       </div>
 
-      {/* Search Bar */}
+      {/* 🔥 Search Bar */}
       <div
         className="form-group"
         style={{
           maxWidth: '600px',
-          margin: '0 auto 2rem auto',
+          margin: '0 auto 1rem auto',
           position: 'relative'
         }}
       >
@@ -79,14 +88,30 @@ const Explore = () => {
         />
       </div>
 
-      {/* Locations Grid */}
+      {/* 🔥 District Dropdown (NEW UI) */}
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <select
+          className="form-control glass"
+          style={{ maxWidth: '300px', margin: '0 auto' }}
+          value={district}
+          onChange={(e) => setDistrict(e.target.value)}
+        >
+          {districts.map((d, index) => (
+            <option key={index} value={d}>
+              {d}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* 🔥 Locations Grid */}
       <div className="grid">
         {filteredLocations.map(location => (
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
 
-      {/* Empty State */}
+      {/* 🔥 Empty State */}
       {filteredLocations.length === 0 && (
         <div
           className="text-center mt-2 glass"
