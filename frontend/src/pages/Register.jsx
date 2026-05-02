@@ -10,14 +10,14 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // ✅ Password strength check
+  // Password strength check
   const isStrongPassword =
     password.length >= 8 && /[A-Z]/.test(password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ❌ Prevent submission if password is weak
+    //  Prevent submission if password is weak
     if (!isStrongPassword) {
       setError("Password must be at least 8 characters and contain at least one uppercase letter");
       return;
@@ -46,7 +46,7 @@ const Register = () => {
           <UserPlus className="icon-inline" /> Register
         </h2>
 
-        {/* 🔴 Error message */}
+        {/*  Error message */}
         {error && (
           <div style={{ color: '#ff4d4f', marginBottom: '1rem', textAlign: 'center' }}>
             {error}
@@ -89,7 +89,7 @@ const Register = () => {
               required
             />
 
-            {/* 🔐 Live password validation */}
+            {/* Live password validation */}
             {password && !isStrongPassword && (
               <p style={{ color: '#ff4d4f', fontSize: '0.85rem', marginTop: '5px' }}>
                 Password must be at least 8 characters and contain a capital letter
