@@ -7,32 +7,59 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Load user from token on app start
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
+    const initializeAuth = () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
       try {
         const decoded = jwtDecode(token);
-        // Check if token is expired
+
+        // ⏳ Check token expiration
         if (decoded.exp * 1000 < Date.now()) {
           localStorage.removeItem('token');
           setUser(null);
         } else {
-          setUser({ username: decoded.sub, role: decoded.role });
+          setUser({
+            username: decoded.sub,
+            role: decoded.role,
+          });
         }
-      } catch (e) {
+      } catch (error) {
+        console.error("Invalid token:", error);
         localStorage.removeItem('token');
         setUser(null);
       }
-    }
-    setLoading(false);
+
+      setLoading(false);
+    };
+
+    initializeAuth();
   }, []);
 
+  // Login function
   const login = (token) => {
-    localStorage.setItem('token', token);
-    const decoded = jwtDecode(token);
-    setUser({ username: decoded.sub, role: decoded.role });
+    try {
+      localStorage.setItem('token', token);
+      const decoded = jwtDecode(token);
+
+      setUser({
+        username: decoded.sub,
+        role: decoded.role,
+      });
+    } catch (error) {
+      console.error("Login failed:", error);
+      setUser(null);
+    }
   };
 
+  // Logout function
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
