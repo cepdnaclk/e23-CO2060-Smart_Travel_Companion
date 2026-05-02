@@ -7,9 +7,9 @@ const Explore = () => {
   const [locations, setLocations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
-  const [district, setDistrict] = useState('All'); // ✅ NEW
+  const [district, setDistrict] = useState('All');
 
-  // 🔥 Fetch locations
+  // Fetch locations
   useEffect(() => {
     const fetchLocations = async () => {
       try {
@@ -22,7 +22,7 @@ const Explore = () => {
     fetchLocations();
   }, []);
 
-  // 🔥 Debounce
+  // Debounce
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchTerm.trim().toLowerCase());
@@ -31,10 +31,10 @@ const Explore = () => {
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // 🔥 District list (dynamic)
+  // District list
   const districts = ['All', ...new Set(locations.map(l => l.district).filter(Boolean))];
 
-  // 🔥 Filter logic (UPDATED)
+  // Filter logic
   const filteredLocations = locations.filter(loc => {
     const name = loc.name?.toLowerCase() || '';
     const locDistrict = loc.district || '';
@@ -53,13 +53,13 @@ const Explore = () => {
   return (
     <div className="container animate-fade-in mb-4">
 
-      {/* 🔥 Header */}
+      {/* Header */}
       <div className="text-center mb-2">
         <h2>Explore Sri Lanka</h2>
         <p className="text-muted">Find your next adventure.</p>
       </div>
 
-      {/* 🔥 Search Bar */}
+      {/* Search Bar */}
       <div
         className="form-group"
         style={{
@@ -88,8 +88,8 @@ const Explore = () => {
         />
       </div>
 
-      {/* 🔥 District Dropdown (NEW UI) */}
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+      {/* District Dropdown */}
+      <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
         <select
           className="form-control glass"
           style={{ maxWidth: '300px', margin: '0 auto' }}
@@ -104,14 +104,19 @@ const Explore = () => {
         </select>
       </div>
 
-      {/* 🔥 Locations Grid */}
+      {/* NEW: Location Count */}
+      <p style={{ textAlign: 'center', marginBottom: '1rem', color: 'var(--text-muted)' }}>
+        {filteredLocations.length} locations found
+      </p>
+
+      {/* Locations Grid */}
       <div className="grid">
         {filteredLocations.map(location => (
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
 
-      {/* 🔥 Empty State */}
+      {/* Empty State */}
       {filteredLocations.length === 0 && (
         <div
           className="text-center mt-2 glass"
