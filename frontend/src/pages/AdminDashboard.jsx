@@ -17,7 +17,7 @@ const AdminDashboard = () => {
 
   const [newLocation, setNewLocation] = useState({ name: '', description: '', district: '', imageUrl: '', latitude: 0, longitude: 0 });
 
-  // ✅ NEW: state for adding new accommodation
+  // NEW: state for adding new accommodation
   const [newAccommodation, setNewAccommodation] = useState({ name: '', price: '', rating: '', imageUrl: '', locationId: '' });
   const [showAddAccommodation, setShowAddAccommodation] = useState(false);
 
