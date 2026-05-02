@@ -78,7 +78,7 @@ public class AdminController {
 
     // --- Accommodations ---
 
-    // FIXED: fetch Location from DB before saving to avoid null reference error
+    // ✅ FIXED: fetch Location from DB before saving to avoid null reference error
     @PostMapping("/accommodations")
     public ResponseEntity<?> createAccommodation(@RequestBody Accommodation accommodation) {
     
