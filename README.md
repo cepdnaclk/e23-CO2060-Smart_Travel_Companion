@@ -52,9 +52,9 @@ This project follows a modern client-server architecture.
 
 | Component | Technology | Description |
 |----------|-----------|------------|
-| **Frontend** | React.js | Mobile-friendly UI |
-| **Backend** | Spring Boot | REST API & business logic |
-| **Database** | MySQL | Data storage |
+| **Frontend** | ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) | Mobile-friendly UI |
+| **Backend** | ![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=springboot&logoColor=white) | REST API & business logic |
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) | Data storage |
 | **API** | REST | Client-server communication |
 
 ---
@@ -74,7 +74,7 @@ The system uses a **three-tier architecture**:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js & npm  
+- React.js & npm  
 - Java (JDK 17+)  
 - MySQL  
 
@@ -82,5 +82,5 @@ The system uses a **three-tier architecture**:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repo-link.git
-cd Smart_Travel_Companion
+git clone https://github.com/cepdnaclk/e23-CO2060-Smart_Travel_Companion.git
+cd e23-CO2060-Smart_Travel_Companion.git
