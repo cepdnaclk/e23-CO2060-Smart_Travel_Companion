@@ -3,7 +3,7 @@ INSERT INTO users (name, email, password, role) VALUES
 ('John Doe', 'user@example.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ROLE_USER');
 
 INSERT INTO locations (name, description, district, image_url, latitude, longitude) VALUES
-('Sigiriya', 'Ancient rock fortress and palace ruin.', 'Matale', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Beauty_of_Sigiriya_by_Malith_de_Silva.jpg/800px-Beauty_of_Sigiriya_by_Malith_de_Silva.jpg', 7.9570, 80.7603),
+('Sigiriya', 'Ancient rock fortress and palace ruin.', 'Matale', 'https://www.biofin.org/sites/default/files/content/news_media/Screenshot%202564-08-02%20at%2010.14.55.png', 7.9570, 80.7603),
 ('Temple of the Tooth', 'Buddhist temple in the city of Kandy, houses the relic of the tooth of the Buddha.', 'Kandy', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Temple_of_the_Tooth_-_Kandy.jpg/800px-Temple_of_the_Tooth_-_Kandy.jpg', 7.2936, 80.6413),
 ('Yala National Park', 'Famous for its variety of wild animals, especially leopards.', 'Hambantota', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Leopard_in_Yala_National_Park%2C_Sri_Lanka.jpg/800px-Leopard_in_Yala_National_Park%2C_Sri_Lanka.jpg', 6.3686, 81.5173),
 ('Galle Fort', 'Historical, archaeological and architectural heritage monument.', 'Galle', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Galle_Fort_Lighthouse_2.jpg/800px-Galle_Fort_Lighthouse_2.jpg', 6.0258, 80.2170),
@@ -14,11 +14,11 @@ INSERT INTO locations (name, description, district, image_url, latitude, longitu
 ('Polonnaruwa', 'Ancient city featuring well-preserved ruins of palaces and temples.', 'Polonnaruwa', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Gal_Viharaya%2C_Polonnaruwa.jpg/800px-Gal_Viharaya%2C_Polonnaruwa.jpg', 7.9403, 81.0188),
 ('Adam''s Peak', 'A tall conical mountain famous for the Sri Pada footprint.', 'Ratnapura', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Adam%27s_Peak_from_Maskeliya.jpg/800px-Adam%27s_Peak_from_Maskeliya.jpg', 6.8096, 80.4994);
 
-INSERT INTO accommodations (name, location_id, price, rating, image_url) VALUES
-('Sigiriya Village Hotel', 1, 150.00, 4.5, 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
-('Hotel Sigiriya', 1, 120.00, 4.2, 'https://images.unsplash.com/photo-1542314831-c6a4d14b4df3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
-('Kandy City Hotel', 2, 80.00, 4.0, 'https://images.unsplash.com/photo-1551882547-ff40c0d129df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
+INSERT INTO accommodations (name, location_id, price, rating, total_rooms, image_url) VALUES
+('Sigiriya Village Hotel', 1, 150.00, 4.5, 10, 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
+('Hotel Sigiriya', 1, 120.00, 4.2, 8, 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAFq4cJPqN9qdfzqFJ--WImMq7Qzefd70lQFjC2K72CCxzh5TX-NQX3KxZBzVsW0Yz62t3RYRfBMneQJi9yZrpzQKF0G_YovxNIxE-MPIzUQDVf6elaM_AkdWWFF2De5InJeb6VVaYKfpOT3=s680-w680-h510-rw'),
+('Kandy City Hotel', 2, 80.00, 4.0, 12, 'https://lh5.googleusercontent.com/proxy/U8tCfTi_zFgXuMHheskbWcaEFmxnyf111DJnuSaT9uW3C_EZCzGkzvZwgycdBCZtHXrQcrgrMNNKwJZvnRSsN6JgtJEQJRBYFIMh_jV9ThMmyNeZKZoZvGcvCpsKesGUXl-4dTr9jcgmfAUb5PZ_KYjtgJXSJg=w252-h168-k-no')
 ('Cinnamon Citadel', 2, 200.00, 4.8, 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
-('Yala Safari Lodge', 3, 250.00, 4.7, 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
-('Galle Heritage Hotel', 4, 180.00, 4.6, 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
-('Ella Flower Garden Resort', 5, 60.00, 4.3, 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+('Yala Safari Lodge', 3, 250.00, 4.7, 6, 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
+('Galle Heritage Hotel', 4, 180.00, 4.6, 9, 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
+('Ella Flower Garden Resort', 5, 60.00, 4.3, 5, 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');

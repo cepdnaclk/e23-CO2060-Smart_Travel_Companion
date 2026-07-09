@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import { LogIn } from 'lucide-react';
@@ -10,13 +10,15 @@ const Login = () => {
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.post('/auth/login', { email, password });
       login(response.data.accessToken);
-      navigate('/');
+      navigate(from, { replace: true });
     } catch (err) {
       setError('Invalid email or password');
     }

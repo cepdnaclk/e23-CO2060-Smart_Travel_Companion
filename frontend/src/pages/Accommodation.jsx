@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import api from '../services/api';
 import { MapPin, Star, ArrowLeft } from 'lucide-react';
 
@@ -8,6 +9,10 @@ const Accommodation = () => {
 
   const [accommodations, setAccommodations] = useState([]);
   const [location, setLocation] = useState(null);
+  const [userBookings, setUserBookings] = useState([]);
+  const { user } = useContext(AuthContext);
+  const routerLocation = useLocation();
+  const [notification, setNotification] = useState('');
 
   // NEW STATES
   const [maxPrice, setMaxPrice] = useState(1000);
@@ -28,6 +33,27 @@ const Accommodation = () => {
     };
     fetchData();
   }, [locationId]);
+
+  // Load current user's bookings to show status badges
+  useEffect(() => {
+    const fetchBookings = async () => {
+      if (!user) return;
+      try {
+        const res = await api.get('/bookings/my', { silent: true });
+        setUserBookings(res.data || []);
+      } catch (err) {
+        // ignore (user may be unauthenticated)
+      }
+    };
+    fetchBookings();
+  }, [user]);
+
+  useEffect(() => {
+    if (routerLocation.state?.bookingSuccess) {
+      setNotification('Booking requested successfully. Your reservation is pending admin approval.');
+      window.history.replaceState({}, document.title);
+    }
+  }, [routerLocation.state]);
 
   // FILTER
   const filtered = accommodations.filter(a => a.price <= maxPrice);
@@ -54,6 +80,13 @@ const Accommodation = () => {
           <MapPin size={16} /> {location.district}
         </p>
       </div>
+
+      {notification && (
+        <div className="glass p-4 mb-4" style={{ borderLeft: '4px solid var(--success)' }}>
+          <strong>Booking Pending</strong>
+          <p>{notification}</p>
+        </div>
+      )}
 
       {/* FILTER + SORT UI */}
       <div className="glass p-3 mb-4" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -119,6 +152,28 @@ const Accommodation = () => {
                     <Star size={16} color="#FFD700" fill="#FFD700" />
                     {acc.rating}
                   </p>
+                </div>
+
+                <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
+                  {(() => {
+                    const myBooking = userBookings.find(b => b.accommodation?.id === acc.id);
+                    if (myBooking) {
+                      const status = myBooking.status || 'PENDING';
+                      const label = status === 'CONFIRMED' || status === 'ACTIVE' ? 'BOOKED' : status;
+                      const cls = status === 'PENDING' ? 'btn btn-outline' : 'btn btn-primary';
+                      return (
+                        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                          <span className={cls} style={{ padding: '0.35rem 0.6rem' }}>{label}</span>
+                          <Link to={`/booking/${acc.id}`} className="btn btn-outline btn-sm">View</Link>
+                        </div>
+                      );
+                    }
+                    return (
+                      <Link to={`/booking/${acc.id}`} className="btn btn-primary btn-sm">
+                        Book Now
+                      </Link>
+                    );
+                  })()}
                 </div>
               </div>
             </div>

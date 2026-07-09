@@ -26,6 +26,7 @@ public class AdminController {
     @Autowired
     private AccommodationRepository accommodationRepository;
 
+
     // --- Users ---
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -124,4 +125,6 @@ public class AdminController {
         accommodationRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    
 }

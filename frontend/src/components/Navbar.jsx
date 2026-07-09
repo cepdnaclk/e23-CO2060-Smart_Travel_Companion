@@ -88,6 +88,16 @@ const Navbar = () => {
               </li>
 
               <li>
+                <Link 
+                  to="/my-bookings" 
+                  className={`nav-link ${isActive('/my-bookings') ? 'active-link' : ''}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  My Bookings
+                </Link>
+              </li>
+
+              <li>
                 <button onClick={handleLogout} className="btn-logout">
                   <LogOut size={18} /> Logout
                 </button>

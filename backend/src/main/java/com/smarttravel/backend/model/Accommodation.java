@@ -29,6 +29,9 @@ public class Accommodation {
 
     private BigDecimal rating;
 
+    @Column(name = "total_rooms", nullable = false)
+    private Integer totalRooms = 1;
+
     @Column(name = "image_url", length = 500)
     private String imageUrl;
 
@@ -86,6 +89,14 @@ public class Accommodation {
 
     public void setRating(BigDecimal rating) {
         this.rating = rating;
+    }
+
+    public Integer getTotalRooms() {
+        return totalRooms;
+    }
+
+    public void setTotalRooms(Integer totalRooms) {
+        this.totalRooms = totalRooms;
     }
 
     public String getImageUrl() {

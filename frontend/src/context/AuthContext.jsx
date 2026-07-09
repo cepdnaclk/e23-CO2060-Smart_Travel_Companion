@@ -20,19 +20,20 @@ export const AuthProvider = ({ children }) => {
 
       try {
         const decoded = jwtDecode(token);
+        if (!decoded) throw new Error('Failed to decode token');
 
         // ⏳ Check token expiration
-        if (decoded.exp * 1000 < Date.now()) {
+        if (decoded.exp && decoded.exp * 1000 < Date.now()) {
           localStorage.removeItem('token');
           setUser(null);
         } else {
           setUser({
-            username: decoded.sub,
-            role: decoded.role,
+            username: decoded.sub || decoded.username || decoded.email || '',
+            role: decoded.role || decoded.roles || 'ROLE_USER',
           });
         }
       } catch (error) {
-        console.error("Invalid token:", error);
+        console.error('Invalid token:', error);
         localStorage.removeItem('token');
         setUser(null);
       }
@@ -50,8 +51,8 @@ export const AuthProvider = ({ children }) => {
       const decoded = jwtDecode(token);
 
       setUser({
-        username: decoded.sub,
-        role: decoded.role,
+        username: decoded.sub || decoded.username || decoded.email || '',
+        role: decoded.role || decoded.roles || 'ROLE_USER',
       });
     } catch (error) {
       console.error("Login failed:", error);

@@ -7,6 +7,7 @@ const AdminDashboard = () => {
   const [locations, setLocations] = useState([]);
   const [users, setUsers] = useState([]);
   const [accommodations, setAccommodations] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const [locationOptions, setLocationOptions] = useState([]);
   const [editingLocationId, setEditingLocationId] = useState(null);
   const [editingLocation, setEditingLocation] = useState(null);
@@ -39,6 +40,9 @@ const AdminDashboard = () => {
       } else if (activeTab === 'accommodations') {
         const res = await api.get('/accommodations');
         setAccommodations(res.data);
+      } else if (activeTab === 'bookings') {
+        const res = await api.get('/admin/bookings');
+        setBookings(res.data);
       }
     } catch (err) {
       console.error(err);
@@ -206,6 +210,7 @@ const AdminDashboard = () => {
         <button className={`btn ${activeTab === 'locations' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('locations')}><MapPin className="icon-inline"/> Manage Places</button>
         <button className={`btn ${activeTab === 'accommodations' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('accommodations')}><HomeIcon className="icon-inline"/> Accommodations</button>
         <button className={`btn ${activeTab === 'users' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('users')}><Users className="icon-inline"/> View Users</button>
+        <button className={`btn ${activeTab === 'bookings' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('bookings')}>Bookings</button>
       </div>
 
       <div className="glass p-4" style={{ padding: '2rem', borderRadius: 'var(--radius)' }}>
@@ -435,6 +440,47 @@ const AdminDashboard = () => {
               )}
             </div>
 
+          </div>
+        )}
+
+        {activeTab === 'bookings' && (
+          <div>
+            <h3>All Bookings</h3>
+            <table style={{ width: '100%', textAlign: 'left', marginTop: '1rem', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                  <th style={{ padding: '0.5rem' }}>ID</th>
+                  <th style={{ padding: '0.5rem' }}>User</th>
+                  <th style={{ padding: '0.5rem' }}>Accommodation</th>
+                  <th style={{ padding: '0.5rem' }}>Check-In</th>
+                  <th style={{ padding: '0.5rem' }}>Check-Out</th>
+                  <th style={{ padding: '0.5rem' }}>Guests</th>
+                  <th style={{ padding: '0.5rem' }}>Status</th>
+                  <th style={{ padding: '0.5rem' }}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings.map(b => (
+                  <tr key={b.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                    <td style={{ padding: '0.5rem' }}>{b.id}</td>
+                    <td style={{ padding: '0.5rem' }}>{b.user?.name} ({b.user?.email})</td>
+                    <td style={{ padding: '0.5rem' }}>{b.accommodation?.name}</td>
+                    <td style={{ padding: '0.5rem' }}>{new Date(b.checkIn).toLocaleDateString()}</td>
+                    <td style={{ padding: '0.5rem' }}>{new Date(b.checkOut).toLocaleDateString()}</td>
+                    <td style={{ padding: '0.5rem' }}>{b.guests}</td>
+                    <td style={{ padding: '0.5rem' }}>{b.status}</td>
+                    <td style={{ padding: '0.5rem' }}>
+                      {b.status === 'PENDING' && (
+                        <button onClick={async () => { try { await api.put(`/admin/bookings/${b.id}/confirm`); fetchData(); } catch (err) { alert('Failed to confirm'); } }} className="btn btn-primary" style={{ marginRight: 8 }}>Confirm</button>
+                      )}
+                      {b.status !== 'CANCELLED' && (
+                        <button onClick={async () => { if (window.confirm('Cancel this booking?')) { try { await api.delete(`/admin/bookings/${b.id}`); fetchData(); } catch (err) { alert('Failed to cancel'); } } }} className="btn btn-outline">Cancel</button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
