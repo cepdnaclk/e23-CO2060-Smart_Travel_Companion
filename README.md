@@ -7,6 +7,11 @@
 > An intelligent travel planning platform designed to simplify trip planning in Sri Lanka through personalized itinerary generation, optimized routes, accommodation discovery, booking management, and interactive maps.
 
 ---
+### 🌐 Live Demo
+
+👉 **[Visit Smart Travel Companion](https://e23-co-2060-smart-travel-companion.vercel.app/)**
+
+---
 
 ## 📖 About the Project
 
