@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Smart Travel Companion - A travel planning platform for local and foreign tourists.">
+
+  <title>Smart Travel Companion | CO2060</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #071a1d;
+      --bg-soft: #0b2628;
+      --card: #103438;
+      --card-soft: #154145;
+
+      --text: #f7fff9;
+      --muted: #b7cbc8;
+
+      --accent: #35d0a0;
+      --accent-2: #ffc857;
+      --accent-3: #36b7d9;
+
+      --border: rgba(255,255,255,0.11);
+
+      --light: #f6faf7;
+      --dark-text: #163332;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* ================================
+       TOP BAR
+    ================================= */
+
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 20px;
+      color: #b7c4d7;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .topbar span {
+      color: var(--accent);
+      padding: 0 10px;
+    }
+
+
+    /* ================================
+       HERO
+    ================================= */
+
+    .hero {
+      min-height: 600px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 80px 20px;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(53,208,160,.18),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(255,200,87,.12),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          135deg,
+          #071a1d 0%,
+          #0b2628 55%,
+          #071a1d 100%
+        );
+    }
+
+
+    .hero-inner {
+      width: min(1100px, 100%);
+    }
+
+
+    .eyebrow {
+      color: var(--accent);
+
+      font-size: 15px;
+      font-weight: 800;
+
+      letter-spacing: 4px;
+
+      margin-bottom: 25px;
+    }
+
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 85px);
+
+      line-height: 1;
+
+      margin-bottom: 30px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #35d0a0,
+          #36b7d9,
+          #ffc857
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+
+    .hero-description {
+      max-width: 850px;
+
+      margin: auto;
+
+      color: var(--muted);
+
+      font-size: 20px;
+    }
+
+
+    /* ================================
+       TECHNOLOGY BADGES
+    ================================= */
+
+    .badges {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 40px;
+    }
+
+
+    .badge {
+      padding: 9px 16px;
+
+      border: 1px solid rgba(53,208,160,.25);
+
+      border-radius: 30px;
+
+      background: rgba(53,208,160,.07);
+
+      color: #e9fff7;
+
+      font-size: 14px;
+
+      font-weight: 600;
+    }
+
+
+    .badge:hover {
+      background: rgba(255,200,87,.12);
+
+      border-color: rgba(255,200,87,.4);
+    }
+
+
+    /* ================================
+       COMMON SECTION
+    ================================= */
+
+    section {
+      padding: 80px 20px;
+    }
+
+
+    .section-inner {
+      width: min(1100px, 100%);
+
+      margin: auto;
+    }
+
+
+    .section-label {
+      color: var(--accent);
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+    }
+
+
+    h2 {
+      font-size: clamp(32px, 5vw, 48px);
+
+      margin-bottom: 20px;
+    }
+
+
+    .lead {
+      color: var(--muted);
+
+      max-width: 850px;
+
+      font-size: 17px;
+    }
+
+
+    /* ================================
+       OVERVIEW
+    ================================= */
+
+    .overview {
+      background: var(--light);
+
+      color: var(--dark-text);
+    }
+
+
+    .overview .lead {
+      color: #59706e;
+    }
+
+
+    .overview-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+
+      margin-top: 40px;
+    }
+
+
+    .overview-card {
+      background: white;
+
+      border: 1px solid #dcebe6;
+
+      padding: 28px;
+
+      border-radius: 18px;
+
+      transition: .3s;
+    }
+
+
+    .overview-card:hover {
+      transform: translateY(-7px);
+
+      box-shadow:
+        0 18px 35px
+        rgba(21,65,69,.12);
+    }
+
+
+    .number {
+      color: #159f7a;
+
+      font-size: 13px;
+
+      font-weight: 900;
+
+      margin-bottom: 15px;
+    }
+
+
+    .overview-card h3 {
+      font-size: 21px;
+
+      margin-bottom: 12px;
+    }
+
+
+    .overview-card p {
+      color: #607188;
+
+      font-size: 15px;
+    }
+
+
+    /* ================================
+       FEATURES
+    ================================= */
+
+    .features {
+      background: var(--bg);
+    }
+
+
+    .feature-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+
+      margin-top: 40px;
+    }
+
+
+    .feature-card {
+      background:
+        linear-gradient(
+          145deg,
+          var(--card),
+          #0d2a2e
+        );
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      min-height: 180px;
+
+      transition: .3s;
+    }
+
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+
+      border-color: rgba(53,208,160,.45);
+    }
+
+
+    .feature-icon {
+      font-size: 28px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+
+      font-size: 21px;
+    }
+
+
+    .feature-card p {
+      color: var(--muted);
+
+      font-size: 15px;
+    }
+
+
+    /* ================================
+       USER JOURNEY
+    ================================= */
+
+    .journey {
+      background: var(--bg-soft);
+    }
+
+
+    .journey-line {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 14px;
+
+      margin-top: 40px;
+    }
+
+
+    .journey-step {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      padding: 28px 20px;
+
+      border-radius: 16px;
+
+      text-align: center;
+
+      transition: .3s;
+    }
+
+
+    .journey-step:hover {
+      transform: translateY(-7px);
+
+      border-color: rgba(255,200,87,.45);
+    }
+
+
+    .journey-step strong {
+      display: block;
+
+      color: var(--accent);
+
+      font-size: 13px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .journey-step span {
+      font-size: 17px;
+
+      font-weight: 700;
+    }
+
+
+    /* ================================
+       TESTING
+    ================================= */
+
+    .testing {
+      background: var(--bg);
+    }
+
+
+    .testing-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 16px;
+
+      margin-top: 40px;
+    }
+
+
+    .test-card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      padding: 25px 20px;
+
+      border-radius: 16px;
+    }
+
+
+    .test-card strong {
+      display: block;
+
+      color: var(--accent);
+
+      font-size: 13px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .test-card h3 {
+      margin-bottom: 8px;
+    }
+
+
+    .test-card p {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+
+    .results {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 15px;
+
+      margin-top: 30px;
+    }
+
+
+    .result {
+      padding: 18px 25px;
+
+      border-radius: 14px;
+
+      background: var(--card-soft);
+
+      border: 1px solid var(--border);
+    }
+
+
+    .result strong {
+      color: var(--accent);
+
+      font-size: 23px;
+
+      margin-right: 7px;
+    }
+
+
+    /* ================================
+       CHALLENGES
+    ================================= */
+
+    .challenges {
+      background: var(--light);
+
+      color: var(--dark-text);
+    }
+
+
+    .challenges .lead {
+      color: #59706e;
+    }
+
+
+    .challenge-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+
+      margin-top: 40px;
+    }
+
+
+    .challenge-card {
+      background: white;
+
+      border: 1px solid #dcebe6;
+
+      padding: 28px;
+
+      border-radius: 18px;
+
+      transition: .3s;
+    }
+
+
+    .challenge-card:hover {
+      transform: translateY(-7px);
+    }
+
+
+    .challenge-card h3 {
+      margin-bottom: 12px;
+    }
+
+
+    .challenge-card p {
+      color: #607188;
+
+      font-size: 15px;
+    }
+
+
+    /* ================================
+       TEAM
+    ================================= */
+
+    .team {
+      background: var(--bg-soft);
+    }
+
+
+    .team-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 16px;
+
+      margin-top: 40px;
+    }
+
+
+    .member {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 25px;
+    }
+
+
+    .member .id {
+      color: var(--accent);
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      margin-bottom: 8px;
+    }
+
+
+    .member h3 {
+      font-size: 19px;
+
+      margin-bottom: 6px;
+    }
+
+
+    .member p {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+
+    /* ================================
+       CONCLUSION
+    ================================= */
+
+    .conclusion {
+      background: var(--light);
+
+      color: var(--dark-text);
+
+      text-align: center;
+    }
+
+
+    .conclusion .lead {
+      margin: auto;
+
+      color: #59706e;
+    }
+
+
+    /* ================================
+       LINKS
+    ================================= */
+
+    .links {
+      background: #f6faf7;
+
+      color: var(--dark-text);
+
+      text-align: center;
+    }
+
+
+    .link-buttons {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+      margin-top: 35px;
+    }
+
+
+    .button {
+      display: inline-block;
+
+      padding: 13px 22px;
+
+      border-radius: 30px;
+
+      background: #123d3c;
+
+      color: white;
+
+      font-weight: 700;
+
+      transition: .3s;
+    }
+
+
+    .button:hover {
+      transform: translateY(-4px);
+
+      background: #159f7a;
+    }
+
+
+    /* ================================
+       FOOTER
+    ================================= */
+
+    footer {
+      padding: 30px 20px;
+
+      background: #061126;
+
+      color: #7f90a8;
+
+      text-align: center;
+
+      font-size: 14px;
+    }
+
+
+    /* ================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 850px) {
+
+      .overview-grid,
+      .feature-grid,
+      .challenge-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testing-grid,
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .journey-line {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      .hero {
+        min-height: auto;
+
+        padding: 60px 18px 75px;
+      }
+
+
+      section {
+        padding: 60px 18px;
+      }
+
+
+      .overview-grid,
+      .feature-grid,
+      .testing-grid,
+      .team-grid,
+      .journey-line,
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .topbar {
+        font-size: 14px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     UNIVERSITY
+========================================= -->
+
+<header class="topbar">
+
+  University of Peradeniya
+
+  <span>|</span>
+
+  Department of Computer Engineering
+
+</header>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="eyebrow">
+      PLAN • ORGANIZE • EXPLORE
+    </div>
+
+
+    <h1>
+      Smart Travel Companion
+    </h1>
+
+
+    <p class="hero-description">
+
+      A unified travel planning platform designed to help
+      local and foreign tourists discover destinations,
+      plan trips, generate itineraries, and manage their
+      travel journey in one place.
+
+    </p>
+
+
+    <div class="badges">
+
+      <div class="badge">React.js</div>
+
+      <div class="badge">Spring Boot</div>
+
+      <div class="badge">Java</div>
+
+      <div class="badge">MySQL</div>
+
+      <div class="badge">REST APIs</div>
+
+      <div class="badge">Git & GitHub</div>
+
+      <div class="badge">Postman</div>
+
+      <div class="badge">Locust</div>
+
+      <div class="badge">Node.js</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     PROJECT OVERVIEW
+========================================= -->
+
+<section class="overview">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      CO2060 • SOFTWARE SYSTEMS DESIGN PROJECT
+    </div>
+
+
+    <h2>
+      Project Overview
+    </h2>
+
+
+    <p class="lead">
+
+      Smart Travel Companion brings important
+      travel-planning activities together in one
+      platform, helping users move from destination
+      discovery to an organized travel plan.
+
+    </p>
+
+
+    <div class="overview-grid">
+
+
+      <div class="overview-card">
+
+        <div class="number">
+          01
+        </div>
+
+        <h3>
+          The Problem
+        </h3>
+
+        <p>
+
+          Trip planning can be fragmented across
+          maps, notes, bookings, recommendations,
+          and different travel information sources.
+
+        </p>
+
+      </div>
+
+
+      <div class="overview-card">
+
+        <div class="number">
+          02
+        </div>
+
+        <h3>
+          Who It Serves
+        </h3>
+
+        <p>
+
+          Local explorers and foreign tourists who
+          need a convenient way to organize travel
+          plans before and during a trip.
+
+        </p>
+
+      </div>
+
+
+      <div class="overview-card">
+
+        <div class="number">
+          03
+        </div>
+
+        <h3>
+          The Solution
+        </h3>
+
+        <p>
+
+          One travel companion for discovering places,
+          planning trips, generating itineraries,
+          navigating locations, and managing trip details.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FEATURES
+========================================= -->
+
+<section class="features">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      CORE CAPABILITIES
+    </div>
+
+
+    <h2>
+      Key Features
+    </h2>
+
+
+    <div class="feature-grid">
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🌍
+        </div>
+
+        <h3>
+          Discover
+        </h3>
+
+        <p>
+          Explore destinations and useful place information.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🗓️
+        </div>
+
+        <h3>
+          Plan
+        </h3>
+
+        <p>
+          Create and organize trips around travel requirements.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🤖
+        </div>
+
+        <h3>
+          Generate
+        </h3>
+
+        <p>
+          Generate structured travel itineraries automatically.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🗺️
+        </div>
+
+        <h3>
+          Navigate
+        </h3>
+
+        <p>
+          Use location-aware map context while exploring.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🏨
+        </div>
+
+        <h3>
+          Manage
+        </h3>
+
+        <p>
+          Keep trip information accessible in one place.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🔄
+        </div>
+
+        <h3>
+          Review
+        </h3>
+
+        <p>
+          Revisit and refine travel plans when requirements change.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     USER JOURNEY
+========================================= -->
+
+<section class="journey">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      COMPLETE USER FLOW
+    </div>
+
+
+    <h2>
+      Travel Journey
+    </h2>
+
+
+    <p class="lead">
+
+      The system supports the complete traveler journey
+      from discovering places to organizing a trip.
+
+    </p>
+
+
+    <div class="journey-line">
+
+
+      <div class="journey-step">
+
+        <strong>
+          01
+        </strong>
+
+        <span>
+          Discover
+        </span>
+
+      </div>
+
+
+      <div class="journey-step">
+
+        <strong>
+          02
+        </strong>
+
+        <span>
+          Plan
+        </span>
+
+      </div>
+
+
+      <div class="journey-step">
+
+        <strong>
+          03
+        </strong>
+
+        <span>
+          Build Itinerary
+        </span>
+
+      </div>
+
+
+      <div class="journey-step">
+
+        <strong>
+          04
+        </strong>
+
+        <span>
+          Review Trip
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     TESTING
+========================================= -->
+
+<section class="testing">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      QUALITY ASSURANCE
+    </div>
+
+
+    <h2>
+      Testing & Validation
+    </h2>
+
+
+    <p class="lead">
+
+      The system was validated through multiple testing
+      approaches covering functionality, integration,
+      user journeys, and performance.
+
+    </p>
+
+
+    <div class="testing-grid">
+
+
+      <div class="test-card">
+
+        <strong>
+          01
+        </strong>
+
+        <h3>
+          Unit Testing
+        </h3>
+
+        <p>
+          Testing individual backend components and logic.
+        </p>
+
+      </div>
+
+
+      <div class="test-card">
+
+        <strong>
+          02
+        </strong>
+
+        <h3>
+          Integration Testing
+        </h3>
+
+        <p>
+          Testing communication between services and APIs.
+        </p>
+
+      </div>
+
+
+      <div class="test-card">
+
+        <strong>
+          03
+        </strong>
+
+        <h3>
+          System Testing
+        </h3>
+
+        <p>
+          Testing complete application workflows.
+        </p>
+
+      </div>
+
+
+      <div class="test-card">
+
+        <strong>
+          04
+        </strong>
+
+        <h3>
+          Acceptance Testing
+        </h3>
+
+        <p>
+          Validating expected user behaviour and scenarios.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="results">
+
+
+      <div class="result">
+
+        <strong>
+          7
+        </strong>
+
+        Unit Tests Passed
+
+      </div>
+
+
+      <div class="result">
+
+        <strong>
+          0
+        </strong>
+
+        Unit Tests Failed
+
+      </div>
+
+
+      <div class="result">
+
+        <strong>
+          Locust
+        </strong>
+
+        Performance Testing
+
+      </div>
+
+
+      <div class="result">
+
+        <strong>
+          Node.js
+        </strong>
+
+        Performance Testing
+
+      </div>
+
+
+    </div>
+
+
+    <br><br>
+
+
+    <p class="lead">
+
+      Manual validation included scenarios such as
+      incorrect password handling, external self-registration
+      restrictions, and unsupported email domains.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CHALLENGES
+========================================= -->
+
+<section class="challenges">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      DEVELOPMENT EXPERIENCE
+    </div>
+
+
+    <h2>
+      Challenges & Resolutions
+    </h2>
+
+
+    <div class="challenge-grid">
+
+
+      <div class="challenge-card">
+
+        <h3>
+          Map & Travel Data
+        </h3>
+
+        <p>
+
+          External services were separated behind
+          clear API boundaries to support integration.
+
+        </p>
+
+      </div>
+
+
+      <div class="challenge-card">
+
+        <h3>
+          Itinerary Consistency
+        </h3>
+
+        <p>
+
+          A consistent data flow and reusable trip
+          models were used to maintain itinerary state.
+
+        </p>
+
+      </div>
+
+
+      <div class="challenge-card">
+
+        <h3>
+          Team Development
+        </h3>
+
+        <p>
+
+          Task ownership, branches, reviews, and
+          frequent merges were used to coordinate
+          parallel development.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     TEAM
+========================================= -->
+
+<section class="team">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      CO2060 • TEAM
+    </div>
+
+
+    <h2>
+      Meet the Team
+    </h2>
+
+
+    <div class="team-grid">
+
+
+      <div class="member">
+
+        <div class="id">
+          E/23/231
+        </div>
+
+        <h3>
+          M. Vaishnavi
+        </h3>
+
+        <p>
+          Computer Engineering
+        </p>
+
+      </div>
+
+
+      <div class="member">
+
+        <div class="id">
+          E/23/019
+        </div>
+
+        <h3>
+          A. Agalya
+        </h3>
+
+        <p>
+          Computer Engineering
+        </p>
+
+      </div>
+
+
+      <div class="member">
+
+        <div class="id">
+          E/23/009
+        </div>
+
+        <h3>
+          Y. Akalyan
+        </h3>
+
+        <p>
+          Computer Engineering
+        </p>
+
+      </div>
+
+
+      <div class="member">
+
+        <div class="id">
+          E/23/393
+        </div>
+
+        <h3>
+          J. Thanushananth
+        </h3>
+
+        <p>
+          Computer Engineering
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CONCLUSION
+========================================= -->
+
+<section class="conclusion">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      FINAL PRODUCT
+    </div>
+
+
+    <h2>
+      Conclusion
+    </h2>
+
+
+    <p class="lead">
+
+      Smart Travel Companion was developed as a travel
+      planning platform supporting users from destination
+      discovery to trip planning, itinerary generation,
+      organization, and review.
+
+    </p>
+
+
+    <br>
+
+
+    <p class="lead">
+
+      The project brings major travel-planning functions
+      together into one platform and was validated through
+      functional, backend, system, manual, and performance
+      testing.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     LINKS
+========================================= -->
+
+<section class="links">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      PROJECT RESOURCES
+    </div>
+
+
+    <h2>
+      Explore the Project
+    </h2>
+
+
+    <div class="link-buttons">
+
+
+      <a
+        class="button"
+        href="https://github.com/cepdnaclk/e23-CO2060-Smart_Travel_Companion"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub Repository
+      </a>
+
+
+      <a
+        class="button"
+        href="https://e23-co-2060-smart-travel-companion.vercel.app/"
+        target="_blank"
+        rel="noopener"
+      >
+        Live Application
+      </a>
+
+
+      <a
+        class="button"
+        href="https://www.ce.pdn.ac.lk/"
+        target="_blank"
+        rel="noopener"
+      >
+        Department of Computer Engineering
+      </a>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+  Smart Travel Companion • CO2060 Software Systems Design Project
+
+  <br>
+
+  University of Peradeniya • Department of Computer Engineering
+
+</footer>
+
+
+</body>
+
+</html>
